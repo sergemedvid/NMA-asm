@@ -1,6 +1,6 @@
 @echo off
-D:
-CD D:\TESTDATA
+E:
+CD E:\TESTDATA
 
 COPY INPUTS\%1.NMA . > NUL
 DEL %1.ACT > NUL

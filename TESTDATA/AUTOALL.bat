@@ -1,17 +1,17 @@
 @echo off
 D:
-CD D:\
 del /q NMA.COM > NUL
 del /q NMA.EXE > NUL
 echo Trying to compile COM
-CALL TESTDATA\COM.BAT NMA
+CALL E:\TESTDATA\COM.BAT NMA
 echo Trying to compile EXE
-CALL TESTDATA\EXE.BAT NMA
+CALL E:\TESTDATA\EXE.BAT NMA
 
-CD D:\TESTS
+E:
+CD E:\TESTS
 TASM cmp.asm > NUL
 TLINK cmp > NUL
-CD D:\TESTDATA
+CD E:\TESTDATA
 del /q NMA.COM > NUL
 del /q NMA.EXE > NUL
 
@@ -20,20 +20,16 @@ COPY D:\NMA.COM . > NUL
 COPY D:\NMA.EXE . > NUL
 DEL D:\RESULT.TXT > NUL
 
-echo Testing...
-echo ================================================
-
 echo INPUT01
-CALL TESTONE INPUT01
+CALL AUTOONE INPUT01
 echo INPUT02
-CALL TESTONE INPUT02
+CALL AUTOONE INPUT02
 echo INPUT03
-CALL TESTONE INPUT03
+CALL AUTOONE INPUT03
 echo EDGE01
-CALL TESTONE EDGE01
+CALL AUTOONE EDGE01
 echo EDGE02
-CALL TESTONE EDGE02
-echo ================================================
+CALL AUTOONE EDGE02
 
 :end
 del NMA.COM
@@ -41,3 +37,5 @@ del NMA.EXE
 del CMP.EXE
 CD D:\
 type D:\RESULT.TXT
+
+exit
