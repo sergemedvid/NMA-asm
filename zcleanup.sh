@@ -1,0 +1,10 @@
+rm -f *.OBJ
+rm -f *.EXE
+rm -f *.COM
+rm -f *.MAP
+rm -f *.TR
+rm -f *.TD
+rm -f TESTDATA/*.ACT
+rm -f TESTDATA/*.BAD
+rm -f TESTDATA/*.RES
+rm -f TESTDATA/*.NMA
