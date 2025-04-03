@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Prepare CSV file
-echo "Directory,ORIG,STD,ADV,BIG,Size" > results.csv
+echo "Directory,ORIG,STD,ADV,BIG,CUST,Size" > results.csv
 
 # Loop through immediate subdirectories matching KA-*
 for dir in KA-*/; do
@@ -40,6 +40,16 @@ for dir in KA-*/; do
         -c "CALL E:\TESTDATA\AUTOZADV.BAT" \
         -c "CALL E:\TESTDATA\AUTOCLN.BAT" \
         2&> /dev/null 
+      gtimeout --signal=SIGKILL 10s dosbox-x \
+        -set "cpu cycles=407000" \
+        -c "mount c ~/Documents/projects/UKMA/2025/KA/_TASM" \
+        -c "mount d ." \
+        -c "mount e ../_mserge/NMA-asm/" \
+        -c "SET PATH=C:\\TASM" \
+        -c "CALL E:\TESTDATA\AUTOPREP.BAT" \
+        -c "CALL E:\TESTDATA\AUTOCUST.BAT" \
+        -c "CALL E:\TESTDATA\AUTOCLN.BAT" \
+        2&> /dev/null 
 
       size=100000
       size_line="N/A"
@@ -59,9 +69,10 @@ for dir in KA-*/; do
       std_count=$(grep -c "STD.*PASSED" RESULT.TXT)
       adv_count=$(grep -c "ADV.*PASSED" RESULT.TXT)
       big_count=$(grep -c "BIG.*PASSED" RESULT.TXT)
+      cust_count=$(grep -c "CUST.*PASSED" RESULT.TXT)
 
       # Write to results.csv (parent directory)
-      echo "${dir%/},$orig_count,$std_count,$adv_count,$big_count,$size" >> ../results.csv
+      echo "${dir%/},$orig_count,$std_count,$adv_count,$big_count,$cust_count,$size" >> ../results.csv
 
       cat RESULT.TXT
     )
