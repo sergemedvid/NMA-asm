@@ -30,7 +30,7 @@ for dir in KA-*/; do
         -c "CALL E:\TESTDATA\AUTOSTD.BAT" \
         -c "CALL E:\TESTDATA\AUTOCLN.BAT" \
         2&> /dev/null 
-      gtimeout --signal=SIGKILL 10s dosbox-x \
+      gtimeout --signal=SIGKILL 15s dosbox-x \
         -set "cpu cycles=407000" \
         -c "mount c ~/Documents/projects/UKMA/2025/KA/_TASM" \
         -c "mount d ." \
