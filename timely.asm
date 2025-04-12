@@ -7,10 +7,10 @@ main:
     mov ds, ax
 
     ; Slow loop (waste time)
-    mov cx, 3FFFh
+    mov cx, 4FFFh
 outer:
     push cx
-    mov cx, 3FFFh
+    mov cx, 4FFFh
 inner:
     loop inner
     pop cx
